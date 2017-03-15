@@ -6,6 +6,7 @@ import { DetailComponent } from '../pages/detail/detail.component';
 import { Page2 } from '../pages/page2/page2';
 import { HttpModule } from '@angular/http';
 import { MovieService } from '../services/movie.service';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MovieService } from '../services/movie.service';
   ],
   imports: [
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     HttpModule
   ],
   bootstrap: [IonicApp],

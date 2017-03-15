@@ -5,6 +5,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { DetailComponent } from '../pages/detail/detail.component';
 import { Page2 } from '../pages/page2/page2';
 import { MovieService } from '../services/movie.service';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -19,13 +20,19 @@ export class MyApp {
   movieSub: any;
   movies = [];
 
-  constructor(private movieService: MovieService, public platform: Platform) {
+  constructor(private movieService: MovieService, public platform: Platform, private storage: Storage) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Detail', component: Page2 }
     ];
+
+     storage.ready().then(() => {
+
+       // set a key/value
+       storage.set('name', 'Tommy');
+     });
 
   }
 
