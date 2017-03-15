@@ -11,6 +11,7 @@ export class DetailComponent {
   title: string = "";
   id: number;
   imageUrl: string = "";
+  rate: number = 0;
   constructor(public navCtrl: NavController, public navParams: NavParams, private movieService: MovieService, private platform: Platform) {
     const movieSelected = navParams.get('movie');
     if (movieSelected.id) {
@@ -29,9 +30,17 @@ export class DetailComponent {
       this.getMovieDetail(this.id);
     }
   }
+
+  ngModelChange(e) {
+    debugger;
+  }
   
   getMovieDetail(id: number) {
-    this.movieService.getMovieDetail(id).subscribe(movie => this.movie = movie);
+    this.movieService.getMovieDetail(id).subscribe((movie) => {
+      this.movie = movie;
+      const currentVote = movie.vote_average;
+      this.rate = currentVote / 2;
+    });
   }
 
   navigateToHomePage() {

@@ -7,6 +7,8 @@ import { Page2 } from '../pages/page2/page2';
 import { HttpModule } from '@angular/http';
 import { MovieService } from '../services/movie.service';
 
+import { Ionic2RatingModule } from 'ionic2-rating';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -16,8 +18,10 @@ import { MovieService } from '../services/movie.service';
   ],
   imports: [
     IonicModule.forRoot(MyApp),
+    Ionic2RatingModule, // Put ionic2-rating module here
     HttpModule
   ],
+  
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
