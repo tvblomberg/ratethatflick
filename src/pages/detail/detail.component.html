@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{title}} - Detail</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-card>
+  <a *ngIf="movie.poster_path"  (click)="navigateToHomePage()"><img src="{{imageUrl}}/{{movie.poster_path}}"/></a>
+  <ion-card-content>
+    <ion-card-title>
+      {{movie.title}}
+    </ion-card-title>
+    <p>
+        {{movie.overview}}<br />
+        <strong>Release Date:</strong> {{movie.release_date}}<br />
+        <strong>Budget:</strong> {{movie.budget}}<br />
+        <strong>Revenue:</strong> {{movie.revenue}}<br />
+        <strong>Vote Average:</strong> {{movie.vote_average}}<br />
+        <strong>Vote Count:</strong> {{movie.vote_count}}
+    </p>
+    <span style="line-height: 2em" *ngFor="let g of movie.genres">
+        <ion-badge item-right>{{g.name}}</ion-badge>&nbsp;
+    </span>
+  </ion-card-content>
+</ion-card>
+</ion-content>

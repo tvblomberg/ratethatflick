@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Rate That Flick - Search</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-input type="text" placeholder="Search Movie" (input)="searchChange($event)"></ion-input>
+  </ion-item>
+  <ion-list>
+    <button ion-item *ngFor="let movie of movies" (click)="itemTapped($event, movie)">
+      {{movie.title}}
+      <div class="item-note" item-right>
+       Vote Avg: {{movie.vote_average}}
+      </div>
+    </button>
+  </ion-list>
+</ion-content>
