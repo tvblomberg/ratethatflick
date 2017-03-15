@@ -6,6 +6,7 @@ import { DetailComponent } from '../pages/detail/detail.component';
 import { Page2 } from '../pages/page2/page2';
 import { HttpModule } from '@angular/http';
 import { MovieService } from '../services/movie.service';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { Ionic2RatingModule } from 'ionic2-rating';
 
@@ -18,7 +19,8 @@ import { Ionic2RatingModule } from 'ionic2-rating';
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    Ionic2RatingModule, // Put ionic2-rating module here
+    Ionic2RatingModule,
+    IonicStorageModule.forRoot(),
     HttpModule
   ],
   
