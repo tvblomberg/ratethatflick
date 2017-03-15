@@ -1,19 +1,29 @@
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-split-pane>
+  <!--  our side menu  -->
+  <ion-menu [content]="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
 
-  <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
-  </ion-content>
+    <ion-content>
+        <ion-item>
+          <ion-input type="text" placeholder="Search Movie" (input)="searchChange($event)"></ion-input>
+        </ion-item>
+      <ion-list>
+        <button ion-item *ngFor="let movie of movies" (click)="itemTapped($event, movie)">
+          {{movie.title}}
+          <div class="item-note" item-right>
+           Vote Avg: {{movie.vote_average}}
+          </div>
+        </button>
+      </ion-list>
+    </ion-content>
 
-</ion-menu>
+  </ion-menu>
 
-<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+  <!-- the main content -->
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+  <ion-nav [root]="rootPage" main #content swipeBackEnabled="false"></ion-nav>
+</ion-split-pane>

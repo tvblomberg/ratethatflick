@@ -2,8 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { SearchComponent } from '../pages/search/search.component';
+import { DetailComponent } from '../pages/detail/detail.component';
 import { Page2 } from '../pages/page2/page2';
+import { MovieService } from '../services/movie.service';
 
 
 @Component({
@@ -12,19 +13,28 @@ import { Page2 } from '../pages/page2/page2';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = SearchComponent;
+  rootPage: any = Page2;
 
   pages: Array<{title: string, component: any}>;
+  movieSub: any;
+  movies = [];
 
-  constructor(public platform: Platform) {
+  constructor(private movieService: MovieService, public platform: Platform) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Search', component: SearchComponent },
-      { title: 'Page Two', component: Page2 }
+      { title: 'Detail', component: Page2 }
     ];
 
+  }
+
+  getMovies(searchFilter: string) {
+    this.movieSub = this.movieService.getMovies(searchFilter).subscribe(movies => this.movies = movies);
+  }
+
+  ngOnDestroy() {
+    this.movieSub.unsubscribe();
   }
 
   initializeApp() {
@@ -34,6 +44,22 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
+  }
+
+    itemTapped(event, movie) {
+    this.nav.setRoot(DetailComponent, {
+      movie: movie
+    });
+  }
+
+    searchChange(event) {
+    const filter = event.srcElement.value;
+
+    if (filter === "") {
+      this.movies = [];
+    } else {
+      this.getMovies(filter);
+    }
   }
 
   openPage(page) {

@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MovieService {
-    apiKey = "API_KEY_GOES_HERE";
+    apiKey = "b505f65cf6638251030c3b0a0ae7f8a5";
     searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${this.apiKey}`;
     imageUrl = 'https://image.tmdb.org/t/p/w500/';
     queryUrl = `https://api.themoviedb.org/3/movie/`;
